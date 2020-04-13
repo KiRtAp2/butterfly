@@ -1,6 +1,10 @@
 # butterfly
 Simulacija različnih primerov kaotičnih sistemov
 
+## Potrebno naložiti
+
+`pip3 install pygame`
+
 ## Kako uporabljati
 Program se zažene z ukazom:
 
