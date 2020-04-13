@@ -32,7 +32,7 @@ Kjer je ime_modula ime datoteke v configs/ brez končnice, npr. `lorenz`.
 
 ### Konfiguracija znotraj modula
 
-`dim`: list z 4 elementi, ki pove, kako se notranje koordinate preslikajo na zaslon
+`dim`: list s 4 elementi, ki pove, kako se notranje koordinate preslikajo na zaslon
 
 `debug(points: list)`: funkcija, ki se pokliče vsakih debug_time milisekund. Uporabno za tiskanje parametrov
 
