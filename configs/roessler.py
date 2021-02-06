@@ -1,11 +1,10 @@
-import pygame
-
 from point import Point
 import colors
 from vector import Vector2
 from math import *
 
 
+# System parameters
 a = 0.1
 b = 0.1
 c = 14
@@ -31,15 +30,13 @@ def translate_xz(p):
 
 def translate_yz(p):
     p.pos.x = p.y
-    p.pos.y = p.z
+    p.pos.y = -p.z
+
+
+translate = translate_yz
 
 
 def debug(points):
-    # p = points[0]
-    # dx = sigma * (p.y - p.x)
-    # dy = p.x * (ro - p.z) - p.y
-    # dz = p.x * p.y - beta * p.z
-    # print(dx, dy, dz)
     pass
 
 
@@ -59,7 +56,7 @@ def do_physics(dt, points):
         p.y += dy
         p.z += dz
 
-        translate_xz(p)
+        translate(p)
 
 
 def additional_draw(window, points, translate):

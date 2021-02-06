@@ -12,6 +12,7 @@ from settings import settings
 def main():
 
     running = True
+    paused = False
     clock = pygame.time.Clock()
 
     points = configuration.get_start_points()
@@ -27,14 +28,19 @@ def main():
             if e.type == pygame.QUIT:
                 running = False
 
-            if e.type == DEBUGEVENT:
+            if e.type == DEBUGEVENT and not paused:
                 configuration.debug(points)
 
-            if e.type == TRACEEVENT:
+            if e.type == TRACEEVENT and not paused:
                 interface.draw_traces(points)
 
+            if e.type == pygame.KEYDOWN:
+                if e.key == pygame.K_SPACE:
+                    paused = not paused
+
         dt = clock.tick(60)
-        configuration.do_physics(dt, points)
+        if not paused:
+            configuration.do_physics(dt, points)
         interface.redraw(points)
 
 

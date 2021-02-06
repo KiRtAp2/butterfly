@@ -1,30 +1,30 @@
-import pygame
-
 from point import Point
 import colors
 from vector import Vector2
 from math import *
 
 
+# Parameters for Lorenz equations
 sigma = 10
 beta = 8/3
 ro = 28
 
-dim = [
+
+dim_xy = [
     -50,
     50,
     -50,
     50
 ]
 
-# dim = [
-#     -70,
-#     70,
-#     -70,
-#     70
-# ]
+dim_yz = [
+    -35,
+    35,
+    0,
+    70
+]
 
-dim = [
+dim_xz = [
     -35,
     35,
     -70,
@@ -47,16 +47,20 @@ def translate_yz(p):
     p.pos.y = p.z
 
 
+# translate: which plane should appear on screen
+translate = translate_xz
+
+# dim: coordinates of points to appear on screen.
+# use of dim variables above is recommended
+dim = dim_xz
+
+
 def debug(points):
-    # p = points[0]
-    # dx = sigma * (p.y - p.x)
-    # dy = p.x * (ro - p.z) - p.y
-    # dz = p.x * p.y - beta * p.z
-    # print(dx, dy, dz)
     pass
 
 
 def get_start_points():
+    # alter starting parameters of point(s)
     return [
         Point(Vector2(), colors.BLUE, x=1, y=1, z=1),
     ]
@@ -72,7 +76,7 @@ def do_physics(dt, points):
         p.y += dy
         p.z += dz
 
-        translate_xz(p)
+        translate(p)
 
 
 def additional_draw(window, points, translate):
