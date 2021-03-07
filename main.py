@@ -23,6 +23,8 @@ def main():
     if settings.debug:
         pygame.time.set_timer(DEBUGEVENT, settings.debug_time)
 
+    t = 0
+
     while running:
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
@@ -31,7 +33,7 @@ def main():
             if e.type == DEBUGEVENT and not paused:
                 configuration.debug(points)
 
-            if e.type == TRACEEVENT and not paused:
+            if e.type == TRACEEVENT and not paused and t > 1000:
                 interface.draw_traces(points)
 
             if e.type == pygame.KEYDOWN:
@@ -40,6 +42,7 @@ def main():
 
         dt = clock.tick(60)
         if not paused:
+            t += dt
             configuration.do_physics(dt, points)
         interface.redraw(points)
 
