@@ -4,7 +4,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 
 class Module3D:
-    def __init__(self, start_points, xlim, ylim, zlim, interval=5):
+    def __init__(self, start_points, xlim, ylim, zlim, interval=5, plotmode=""):
         self.points = start_points
         self.fig = plt.figure()
         self.ax = self.fig.add_subplot(111, projection="3d")
@@ -15,7 +15,7 @@ class Module3D:
         self.plots = []
         for __ in range(len(start_points)):
             self.plots.append(
-                self.ax.plot([], [], [], linewidth=1)[0]
+                self.ax.plot([], [], [], plotmode, linewidth=1)[0]
             )
 
         self.animation = FuncAnimation(self.fig, self.new_point, interval=interval)
@@ -31,4 +31,3 @@ class Module3D:
                 [p[1] for p in self.points[i]],
                 [p[2] for p in self.points[i]]
             )
-
